@@ -29,7 +29,7 @@ style = font.Font(family='Helvetica')
 # Input
 input = tk.StringVar()
 input_screen = tk.Entry(screen_frame, textvariable=input, width=38)
-input_screen.config(state='disable')
+input_screen.config(state='disable')                                    # disable access to the input screen
 input_screen.pack()
 
 # Functions
@@ -40,6 +40,9 @@ def insert_input(x):
     input_screen.config(state='normal')
     input_screen.insert(len(input.get()), x)
     input_screen.config(state='disable')
+
+
+    
 
 # Buttons
 one_btn = tk.Button(button_frame, text="1", bg='#FFF', fg='#008080', width=2, height=1, font=style, padx=8, pady=5, command=lambda:insert_input("1"))
@@ -90,7 +93,7 @@ equal_btn.grid(column=2, row=3, padx=5, pady=5)
 div_btn = tk.Button(button_frame, text="/", bg='#008080', fg='#fff', width=2, height=1, font=style, padx=8, pady=5, command=lambda:insert_input("/"))
 div_btn.grid(column=3, row=3, padx=5, pady=5)
 
-clear_btn = tk.Button(button_frame, text="Clear", bg='#fff', fg='#008080', width=7, height=1, font=style, padx=8, pady=5, command=lambda:input)
+clear_btn = tk.Button(button_frame, text="Clear", bg='#fff', fg='#008080', width=7, height=1, font=style, padx=8, pady=5, command=lambda:input.set(""))
 clear_btn.grid(column=0, row=5, columnspan=2, padx=5, pady=5)
 
 exit_btn = tk.Button(button_frame, text="Exit", bg='#fff', fg='#008080', width=7, height=1, font=style, padx=8, pady=5)
