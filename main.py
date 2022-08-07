@@ -41,7 +41,20 @@ def insert_input(x):
     input_screen.insert(len(input.get()), x)
     input_screen.config(state='disable')
 
-
+def enter():
+    """
+        Either produces a result in the screen or an error
+    """
+    try:
+        result = eval(input.get())
+    except ZeroDivisionError:
+        input.set("Can\'t divide by zero") 
+        print('ZeroDivisionError: Can\'t divide by 0')
+    except SyntaxError:
+        input.set("Typo occurred")
+        print('SyntaxError: Invalid Syntax, perhaps a typo was made')
+    else:
+        input.set(result)
     
 
 # Buttons
@@ -87,7 +100,7 @@ decimal_btn.grid(column=0, row=3, padx=5, pady=5)
 zero_btn = tk.Button(button_frame, text="0", bg='#FFF', fg='#008080', width=2, height=1, font=style, padx=8, pady=5, command=lambda:insert_input("0"))
 zero_btn.grid(column=1, row=3, padx=5, pady=5)
 
-equal_btn = tk.Button(button_frame, text="=", bg='#FFF', fg='#008080', width=2, height=1, font=style, padx=8, pady=5)
+equal_btn = tk.Button(button_frame, text="=", bg='#FFF', fg='#008080', width=2, height=1, font=style, padx=8, pady=5, command=enter)
 equal_btn.grid(column=2, row=3, padx=5, pady=5)
 
 div_btn = tk.Button(button_frame, text="/", bg='#008080', fg='#fff', width=2, height=1, font=style, padx=8, pady=5, command=lambda:insert_input("/"))
